@@ -1,0 +1,58 @@
+﻿@using YathOnline.Models.Dtos
+
+@if (Products == null)
+{
+    <h4>Loading ......</h4>
+}
+else
+{
+    <h4 class="text text-uppercase text-info">@Products.First().ProductCategoryName</h4>
+    <hr />
+    <div class=" row ">
+        @foreach (var product in Products)
+        {
+            <div class=" col-3 border text-center " >
+                <div class="card">
+                    <div class="card-header"> 
+
+                    </div>
+                    <div class="card-body">
+                        <a href="#"><img src="@product.ImageUrl" class="img "></a>
+                    </div>
+
+                    <div class="card-footer text text-primary text-center">
+                        @product.Name
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@code {
+
+
+    [Parameter]
+    public List<ProductDto>? Products { get; set; }
+
+    protected override void OnInitialized()
+    {
+       
+    }
+
+}

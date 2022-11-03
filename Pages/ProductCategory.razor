@@ -1,0 +1,65 @@
+﻿
+@page "/productcategory/{id:int}"
+@using YathOnline.Models
+@using YathOnline.Models.Dtos
+@using YathOnline.Web.Services.Contracts
+
+
+
+
+    @if (ProductCategoryItems == null)
+    {
+      <h4>Loading ......</h4>
+    }
+    else if(ProductCategoryItems.Data == null)
+    {
+       <h4>Data is null Loading ......</h4>
+    }
+    else
+    {
+
+    <ProductDisplay Products="@ProductCategoryItems.Data.ToList()"></ProductDisplay>
+
+     }
+
+
+
+
+
+
+
+
+
+
+@code {
+
+
+    [Inject]
+    public IProductRepo? ProductRepo { get; set; }
+
+
+
+    [Parameter]
+    public int id { get; set; }
+
+    public ClientPayload<IEnumerable<ProductDto>> ProductCategoryItems { get; set; } = new();
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (ProductRepo != null)
+        {
+            ProductCategoryItems = await ProductRepo.GetProductsByCategory(id, null);
+            //await InvokeAsync(StateHasChanged);
+        }
+
+      
+    }
+
+
+
+
+
+
+}

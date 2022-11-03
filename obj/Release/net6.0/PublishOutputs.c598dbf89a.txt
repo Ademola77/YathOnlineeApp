@@ -1,0 +1,1 @@
+C:\Users\Arc.Ademola\source\repos\YathOnline\YathOnline.Web\obj\Release\net6.0\browser-wasm\PubTmp\Out\web.config
